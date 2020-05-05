@@ -1,0 +1,38 @@
+version: '3.1'
+
+services:
+
+  db:
+    image: postgres
+    restart: always
+    volumes:
+      - octopus:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: octopus
+      POSTGRES_USER: octopus
+      POSTGRES_DB: octopus
+    ports:
+      - 5432:5432
+
+  api:
+    build:
+      context: ./dashboard/api-octopus-dashboard
+    restart: always
+    depends_on:
+      - db
+    ports:
+      - 5000:5000
+
+  crawler:
+    build:
+      context: ./dashboard/crawler-octopus-dashboard
+    restart: always
+    depends_on:
+      - db
+    ports:
+      - 8080:8080
+
+volumes:
+  octopus:
+
+

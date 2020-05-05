@@ -1,0 +1,25 @@
+# ---------------
+# Spring settings
+# ---------------
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  mvc:
+    throw-exception-if-no-handler-found: true
+  resources:
+    add-mappings: false
+  datasource:
+    url: jdbc:postgresql://db:5432/octopus
+    username: octopus
+    password: octopus
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+# ---------------
+# Server settings
+# ---------------
+server:
+  port: 5000
