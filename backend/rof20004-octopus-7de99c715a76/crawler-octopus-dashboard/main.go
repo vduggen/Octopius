@@ -201,7 +201,7 @@ func saveQuestion(question *Question) error {
 }
 
 func updateQuestion(question *Question) error {
-	_, err := db.Exec("UPDATE question SET is_notified = $1, is_relevant = $2", question.IsNotified, question.IsRelevant)
+	_, err := db.Exec("UPDATE question SET is_notified = $1, is_relevant = $2 WHERE id = $3", question.IsNotified, question.IsRelevant, question.ID)
 	if err != nil {
 		log.Println("[main.updateQuestion]", err)
 		return err
